@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container customContainer">
+
+  <div id="pop" class="smart-popin">
+    <div class="sp-table">
+      <div class="sp-cell">
+        <div class="sp-body">
+          <form name="connexion">
+            <!-- Modal content -->
+            <h3 class="titleBloc">Connexion</h3>
+            <div class="connectForm">
+
+              <div class="form-group">
+                <input class="inputConnect" type="text" placeholder="ID ou Adresse E-mail" name="mail" [(ngModel)]="user.mdmcustid" />
+              </div>
+
+              <div class="form-group">
+                <input class="inputConnect" type="password" placeholder="Mot de passe" name="password" />
+              </div>
+
+            </div>
+
+            <div id="buttonConnect" class="form-group">
+              <div class="flexList">
+                <div class="flexElt connexion"><input type="button" class="buttonBlue" name="connexionButton" value="Connexion" (click)="getIdCustomer()" data-toggle="modal" data-target=".bs-example-modal-sm"></div>
+                <div class="flexElt linkpassword"><a class="forgetLink">Mot de passe oublié ?</a></div>
+              </div>
+            </div>
+
+            <div id="socialConnect">
+              <h3 class="titleBloc">Connexion avec...</h3>
+
+              <div class="flexList">
+                <div class="flexElt"><a><img src="../../assets/img/facebook.png" alt="Connexion Facebook" /> Facebook</a></div>
+                <div class="flexElt"><a><img src="../../assets/img/twitter.png" alt="Connexion Twitter" /> Twitter</a></div>
+                <div class="flexElt"><a><img src="../../assets/img/linkedin.png" alt="Connexion Linkedin" /> Linkedin</a></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12 control">
+                <div style=" padding-top:15px; font-size:85%" >
+                  Vous n'avez pas encore de compte!
+                  <a (click)="router.navigate(['inscription']);">
+                    Créez-en un
+                  </a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="pop2" class="smart-popin modal fade bs-example-modal-sm" tabindex="-1" *ngIf="popupMode === 1">
+    <div class="sp-table modal-dialog" role="document">
+      <div class="sp-cell ">
+        <div class="sp-body modal-content  ">
+          <form name="oubliDefinitif" class="alert alert-danger">
+            <!-- Modal content -->
+            <h3 class="titleBloc">Oubli définitif</h3>
+            <p>Conformément à l'article 17 de la GDPR, vous avez demandé le droit d'être oublié. Cette demande va être effective dans l'ensemble des applications du SI d'ACME Fashion. </p>
+            <input type="button" class="btn btn-danger center-block" name="buttonForget" value="Quitter" data-dismiss="modal" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

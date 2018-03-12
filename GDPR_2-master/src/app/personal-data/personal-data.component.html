@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container customContainer" >
+  <div class="row">
+    <div class="col-lg-5 customBlock">
+      <img class="logo" src="../../assets/img/acme.png" alt="Logo" />
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Menu de navigation</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="msgAccueil">
+                <div class="nameUser">
+                  <div class="tdPhoto"><img src="../../assets/img/photo0.png" /></div>
+                  <div class="tdName">Bonjour,<span class="firstName">{{customers.first_name}}</span></div>
+                  <div class="deconnexion" (click)="deconnect()"> Déconnexion </div>
+                </div>
+              </li>
+              <li class="selected"><a routerLink="/personalData"><img src="../../assets/img/personalData.png" /> Données personnelles</a></li>
+              <li><a routerLink="/adresse"><img src="../../assets/img/adresse.png" /> Adresse</a></li>
+              <li><a routerLink="/mesCommandes"><img src="../../assets/img/mesCommandes.png" /> Mes commandes</a></li>
+              <li><a routerLink="/socialMedia"><img src="../../assets/img/socialMedia.png" /> Social Media</a></li>
+              <li><a routerLink="/dataProtability"><img src="../../assets/img/portabiliteData.png" /> Gérer mes données</a></li>
+              <li><a routerLink="/credit"><img src="../../assets/img/portabiliteData.png" /> Crédit</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <h1 class="titlePage">Données personnelles</h1>
+      <!-- Read mode 'Mes informations' -->
+      <div class="blocMenu" *ngIf="mode==1">
+        <button class="buttonRight" (click)="updateContact(2)"><img src="../../assets/img/edit2.png" alt="Editer" /></button>
+        <h3 class="titleBloc">Mes informations</h3>
+        <div class="mainBloc">
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">N° de client:</label></div>
+              <div class="flexElt"><span>{{idUser}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Nom:</label></div>
+              <div class="flexElt"><span>{{customers.last_name}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Prénom:</label></div>
+              <div class="flexElt"><span>{{customers.first_name}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Suffixe:</label></div>
+              <div class="flexElt"><span>{{customers.suffix}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Préfixe:</label></div>
+              <div class="flexElt"><span>{{customers.prefix}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Genre:</label></div>
+              <div class="flexElt"><span>{{customers.gender}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Année de naissance:</label></div>
+              <div class="flexElt"><span>{{customers.dob| date :  "dd.MM.y" }}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- update mode 'Mes informations'-->
+      <div class="blocMenu" *ngIf="mode==2">
+        <button class="buttonRight" (click)="updateContact(1)"><img src="../../assets/img/edit2.png" alt="Editer" /></button>
+          <h3 class="titleBloc">Mes informations</h3>
+
+        <div class="mainBloc">
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">N° de client:</label></div>
+              <div class="flexElt"><span>{{idUser}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Nom:</label></div>
+              <div class="flexElt"><span><input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.primary_info.last_name"></span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Prénom:</label></div>
+              <div class="flexElt"><span><input type="text" class="form-control" name="firstname" [(ngModel)]="customersxml.primary_info.first_name"></span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Suffixe:</label></div>
+              <div class="flexElt"><span>
+                <select class="selectpicker form-control" name="prefix" [(ngModel)]="customers.suffix" (change)="onChangeSuffix($event.target.value)">
+                    <option>Jr</option>
+                    <option>Sr</option>
+                </select>
+              </span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Préfixe:</label></div>
+              <div class="flexElt"><span>
+                <select class="selectpicker form-control" name="prefix" [(ngModel)]="customers.prefix" (change)="onChangePrefix($event.target.value)">
+                    <option>Mr</option>
+                    <option>Ms</option>
+                    <option>Mrs</option>
+                    <option>Dr</option>
+                </select>
+              </span></div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Genre:</label></div>
+              <div class="flexElt"><span>
+                <select class="selectpicker form-control" name="gender" [(ngModel)]="customers.gender" (change)="onChange($event.target.value)">
+                    <option>MALE</option>
+                    <option>FEMALE</option>
+                </select>
+              </span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Année de naissance:</label></div>
+              <div class="flexElt"><span><input type="text" class="form-control" name="dob"  [(ngModel)]="customersxml.primary_info.dob"></span></div>
+            </div>
+          </div>
+          <div class="flexElt"><button type="button" class="btn btn-primary btn-sm" (click)="updateMyInfo()">Envoyer</button></div>
+
+        </div>
+      </div>
+
+      <!-- Read mode 'Contact' -->
+      <div class="blocMenu" *ngIf="modeContact==3">
+        <button class="buttonRight" (click)="updateContact(4)"><img src="../../assets/img/edit2.png"  alt="Editer" /></button>
+        <h3 class="titleBloc">Contact</h3>
+
+        <div class="mainBloc">
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Téléphone portable:</label></div>
+              <div class="flexElt"><span>{{customers.mobile_phone}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Téléphone</label></div>
+              <div class="flexElt"><span>{{customers.home_phone}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Email:</label></div>
+              <div class="flexElt"><span>{{customers.email}}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- update mode 'Contact'-->
+      <div class="blocMenu" *ngIf="modeContact==4">
+        <button class="buttonRight" (click)="updateContact(3)"><img src="../../assets/img/edit2.png"  alt="Editer" /></button>
+        <h3 class="titleBloc">Contact</h3>
+
+        <div class="mainBloc">
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Téléphone portable:</label></div>
+              <div class="flexElt"><span><input type="text" class="form-control" name="mobile_phone" [(ngModel)]="customersxml.primary_info.mobile_phone"></span></div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Téléphone</label></div>
+              <div class="flexElt"><span><input type="text" class="form-control" name="home_phone" [(ngModel)]="customersxml.primary_info.home_phone"></span></div>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Email:</label></div>
+              <div class="flexElt"><span><input type="text" class="form-control" name="email" [(ngModel)]="customersxml.primary_info.email"></span></div>
+            </div>
+          </div>
+          <div class="flexElt"><button type="button" class="btn btn-primary btn-sm" (click)="updateMyInfo()">Envoyer</button></div>
+
+        </div>
+      </div>
+
+
+      <div id="advertizer" class="blocMenu">
+        <p>
+          Vos données personnelles restent strictement confidentielles dans le respect de vos consentements.
+          Pour plus d’information, allez dans la rubrique <a id="linkadvertizer" routerLink="/dataProtability" alt="Portabilité des données">Gérer mes données.</a>
+        </p>
+      </div>
+
+      <div class="blocMenu">
+        <h3 class="titleBloc">Mes Consentements</h3>
+
+
+        <div class="mainBloc">
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Date d'adhésion:</label></div>
+              <div class="flexElt"><span>{{personalInfo?.processconsentement.consent_date_program | date :  "dd.MM.y"}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Adhésion SMS:</label></div>
+              <div class="flexElt" *ngIf="personalInfo?.processconsentement.consent_sms === 'true'"><span>{{personalInfo?.processconsentement.consent_date_sms| date :  "dd.MM.y"}}</span></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Adhésion Newsletter:</label></div>
+              <div class="flexElt" *ngIf="personalInfo?.processconsentement.consent_mail === 'true'"><span>{{personalInfo?.processconsentement.consent_date_mail| date :  "dd.MM.y"}}</span></div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="flexList">
+              <div class="flexElt"><label class="personalData">Adhésion partage avec un tiers </label></div>
+              <div class="flexElt" *ngIf="personalInfo?.processconsentement.consent_partner_offers === 'true'"><span>{{personalInfo?.processconsentement.consent_date_partner_offers | date :  "dd.MM.y"}}</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-container">
+    <img src="../../assets/img/sqli.png" alt="Logo SQLI" />
+  </div>
+</footer>
+
+</body>
+</html>

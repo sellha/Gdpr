@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container customContainer" >
+  <div class="row">
+    <div class="col-lg-5 customBlock">
+      <img class="logo" src="../../assets/img/acme.png" alt="Logo" />
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Menu de navigation</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="msgAccueil">
+                <div class="nameUser">
+                  <div class="tdPhoto"><img src="../../assets/img/photo0.png" /></div>
+                  <div class="tdName">Bonjour,<span class="firstName">{{customers.first_name}}</span></div>
+                  <div class="deconnexion" (click)="deconnect()"> Déconnexion </div>
+                </div>
+              </li>
+              <li ><a routerLink="/personalData"><img src="../../assets/img/personalData.png" /> Données personnelles</a></li>
+              <li><a routerLink="/adresse"><img src="../../assets/img/adresse.png" /> Adresse</a></li>
+              <li><a routerLink="/mesCommandes"><img src="../../assets/img/mesCommandes.png" /> Mes commandes</a></li>
+              <li><a routerLink="/socialMedia"><img src="../../assets/img/socialMedia.png" /> Social Media</a></li>
+              <li><a routerLink="/dataProtability"><img src="../../assets/img/portabiliteData.png" /> Gérer mes données</a></li>
+              <li class="selected"><a routerLink="/credit"><img src="../../assets/img/portabiliteData.png" /> Crédit</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <h1 class="titlePage">Données personnelles</h1>
+      <!-- Read mode 'Mes informations' -->
+      <div class="blocMenu" >
+        <div class="mainBloc">
+          <img
+            src="../../assets/img/credit1.png"
+
+          />
+        </div>
+      </div>
+     </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-container">
+    <img src="../../assets/img/sqli.png" alt="Logo SQLI" />
+  </div>
+</footer>
+
+</body>
+</html>

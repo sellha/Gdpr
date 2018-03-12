@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container customContainer">
+  <div class="row">
+    <div class="col-lg-5 customBlock">
+      <img class="logo" src="../../assets/img/acme.png" alt="Logo" />
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Menu de navigation</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="msgAccueil">
+                <div class="nameUser">
+                  <div class="tdPhoto"><img src="../../assets/img/photo0.png" /></div>
+                  <div class="tdName">Bonjour,<span class="firstName"> {{personalInfo?.primary_info.first_name}}</span></div>
+                  <div class="deconnexion" (click)="deconnect()"> Déconnexion </div>
+
+                </div>
+              </li>
+              <li ><a routerLink="/personalData"><img src="../../assets/img/personalData.png" /> Données personnelles</a></li>
+              <li><a routerLink="/adresse"><img src="../../assets/img/adresse.png" /> Adresse</a></li>
+              <li><a routerLink="/mesCommandes"><img src="../../assets/img/mesCommandes.png" /> Mes commandes</a></li>
+              <li><a routerLink="/socialMedia"><img src="../../assets/img/socialMedia.png" /> Social Media</a></li>
+              <li class="selected"><a routerLink="/dataProtability"><img src="../../assets/img/portabiliteData.png" /> Gérer mes données</a></li>
+              <li><a routerLink="/credit"><img src="../../assets/img/portabiliteData.png" /> Crédit</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <h1 class="titlePage">Gérer mes données</h1>
+
+      <div class="blocMenu">
+
+        <h3 class="titleBloc">Télécharger mes données</h3>
+
+        <div class="mainBloc">
+          <p><img src="../../assets/img/feuilledl.png" alt="Téléchargement Excel" /> <a [attr.href]="downloadAppFile(idUser)" target="_blank">Télécharger mes données au format Excel</a></p>
+          <!--<div class="subTitleStatus">Ready
+            <a style="cursor:pointer" [attr.href]="downloadAppFile(idUser)" target="_blank">
+              <i class="glyphicon glyphicon-download-alt"></i>
+            </a>
+          </div>-->
+          <h3>Envoyer mes données à :</h3>
+          <p>{{personalInfo?.primary_info.email}}</p>
+
+          <div class="flexList">
+            <div class="flexElt"><a class="handCursor" (click)="sendMail(idUser)" target="_blank"><img src="../../assets/img/excel.png" alt="Téléchargement Excel" /> Excel</a></div>
+            <div class="flexElt"><a class="handCursor" (click)="sendMail(idUser)" target="_blank" ><img src="../../assets/img/xml.png" alt="Téléchargement XML" /> XML</a></div>
+            <div class="flexElt"><a class="handCursor" (click)="sendMail(idUser)" target="_blank" ><img src="../../assets/img/json.png" alt="Téléchargement JSON" /> JSON</a></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="blocMenu">
+        <h3 class="titleBloc">Mes consentements</h3>
+
+        <div class="mainBloc">
+          <div class="form-group">
+            <label class="portabilite">Autoriser l'envoie de sms:</label>
+            <label class="switch">
+              <input type="checkbox"  id="saveUserNameCheckBox"
+                     name="rememberMe" [(ngModel)]=consent_sms  (click)="mesConstValue(!consent_sms, 'sms')" >
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="portabilite">Autoriser l'envoie de newsletter:</label>
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]=consent_mail (click)="mesConstValue(!consent_mail, 'mail')">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="portabilite">Partager mes infos avec un tiers:</label>
+            <label class="switch">
+              <input type="checkbox" [(ngModel)]=consent_partner_offers (click)="mesConstValue(!consent_partner_offers, 'partner')">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+
+
+
+        </div>
+        <div class="form-group">
+          <button id="buttonForgetMe" type="button" class="buttonBlue center-block" (click)="showForgetMe()">Oubliez moi</button>
+        </div>
+      </div>
+
+      <div class="blocMenu" *ngIf="blockMode" >
+        <h3 id="oubliTitle" class="titleBloc">Droit d'être oublié</h3>
+
+        <div id="advertizer" class="blocMenu">
+          <p>Vos données nous permettent de vous proposer des offres adaptées.</p>
+        </div>
+
+        <div class="form-group">
+          <p>Pour mieux adapter nos échanges vous pouvez choisir parmi les options suivantes :</p>
+
+          <label id="oubliLabel">Fréquence de communications avec ACME</label>
+          <div class="flexList">
+
+            <div class="flexElt">
+              <div class="radio">
+                <label><input type="radio" name="frequenceCom" id="1perMonth" [(ngModel)]="personalInfo?.processconsentement.consent_comm_frequency" value="Mois" (click)="chekBoxValue('Mois')">1 par mois</label>
+              </div>
+            </div>
+
+            <div class="flexElt">
+              <div class="radio">
+                <label><input type="radio" name="frequenceCom" id="1perTrim" [(ngModel)]="personalInfo?.processconsentement.consent_comm_frequency" value="Trimestre" (click)="chekBoxValue('Trimestre')">1 par trimestre</label>
+              </div>
+            </div>
+
+            <div class="flexElt">
+              <div class="radio">
+                <label><input type="radio" name="frequenceCom" id="1perYear" [(ngModel)]="personalInfo?.processconsentement.consent_comm_frequency" value="An" (click)="chekBoxValue('An')">1 par an</label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="portabilite">Je souhaite recevoir des remises exclusives par SMS:</label>
+          <label class="switch">
+            <input type="checkbox"  [(ngModel)]="consent_sms"  (click)="mesConstValue(!consent_sms, 'sms')" >
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="portabilite">Je souhaite recevoir des remises exclusives par email:</label>
+          <label class="switch">
+            <input type="checkbox" name="consent_mail"   [(ngModel)]="consent_mail" (click)="mesConstValue(!consent_mail, 'mail')" >
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="portabilite" >Je souhaite recevoir des offres partenaire de ACME:</label>
+          <label class="switch" >
+            <input type="checkbox" name="consent_partner_offers" [(ngModel)]="consent_partner_offers" (click)="mesConstValue(!consent_partner_offers, 'partner')">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="mainBloc">
+          <form name="oubli">
+            <div class="form-group">
+              <p>Vous pouvez vous faire oublier et ainsi garantir le fait que vous restez anonyme.</p>
+            </div>
+
+            <div class="form-group">
+              <button id="buttonForget" type="button" class="buttonBlue center-block" data-toggle="modal" data-target=".bs-example-modal-sm">Oubliez moi définitivement</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pop" class="smart-popin modal fade bs-example-modal-sm" tabindex="-1">
+    <div class="sp-table modal-dialog" role="document">
+      <div class="sp-cell">
+        <div class="sp-body modal-content">
+          <form name="oubliDefinitif">
+            <!-- Modal content -->
+            <button id="buttonClose"><img src="../../assets/img/cross2.png" data-dismiss="modal" alt="Fermer la fenêtre" /></button>
+            <h3 class="titleBloc">Oubli définitif</h3>
+            <p><span id="warning">Attention</span>, en cliquant sur ce bouton, vous demandez à ACME de supprimer des informations vous concernant :</p>
+            <ul>
+              <li>Vous quitterez le programme de fidélité ACME</li>
+              <li>Vous perdrez l’historique de vos achats et de votre personnalisation</li>
+              <li>Vous ne recevrez plus les offres promotionnelles</li>
+            </ul>
+            <input type="button" class="buttonBlue center-block" name="buttonForget" value="Oubliez moi" (click)="forgetmevalue()" data-dismiss="modal" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-container">
+    <img src="../../assets/img/sqli.png" alt="Logo SQLI" />
+  </div>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container customContainer">
+  <img class="center-block" src="../../assets/img/acme.png" alt="Logo" />
+  <div id="pop" class="smart-popin">
+    <div class="sp-table">
+      <div class="sp-cell">
+        <div class="sp-body">
+          <form name="register">
+            <!-- Modal content -->
+            <h3 class="titleBloc">Inscrivez vous à l'aide de votre adresse e-mail</h3>
+            <div class="registerForm">
+
+              <div class="form-group">
+                <input class="inputRegister" type="text" placeholder="Adresse E-mail" name="mail" />
+                <span class="info">*Un email de confirmation vous sera envoyé à cette adresse</span>
+              </div>
+
+              <div class="form-group">
+                <input class="inputRegister" type="text" placeholder="Prénom" name="firstName" />
+              </div>
+
+              <div class="form-group">
+                <input class="inputRegister" type="text" placeholder="Nom de famille" name="lastName" />
+              </div>
+
+              <div class="form-group">
+                <input class="inputRegister" type="text" placeholder="Mot de passe" name="password" />
+                <span class="info">*Votre mot de passe doit contenir au moins 6 caractères et inclure un chiffre</span>
+              </div>
+
+              <div class="form-group">
+                <input class="inputRegister" type="text" placeholder="Date de naissance" name="birthDate" />
+              </div>
+
+              <div id="genreUser" class="form-group">
+                <label>Sexe :</label>
+                <div id="genderChoice">
+                  <div class="radio-item">
+                    <input type="radio" id="fille" name="gender">
+                    <label for="fille">Fille</label>
+                  </div>
+
+                  <div class="radio-item">
+                    <input type="radio" id="garçon" name="gender">
+                    <label for="garçon">Garçon</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Préférénce de contact :</label>
+
+                <div class="form-group">
+                  <div class="radio-item">
+                    <div class="inputNews">
+                      <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+                    <div class="labelNews">Je souhaite recevoir des remises exclusives par SMS:</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="radio-item">
+                    <div class="inputNews">
+                      <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+                    <div class="labelNews">Je souhaite recevoir des remises exclusives par email:</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="radio-item">
+                    <div class="inputNews">
+                      <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+                    <div class="labelNews">Je souhaite recevoir des offres partenaire de ACME:</div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="registerButton" class="form-group">
+                <input type="button" class="buttonBlue" name="registerButton" value="Inscription" />
+              </div>
+              <span id="acceptTerms">En créant votre compte, vous acceptez nos termes et conditions & politiques de confidentialité.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

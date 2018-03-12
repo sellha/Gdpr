@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container customContainer">
+  <div class="row">
+    <div class="col-lg-5 customBlock">
+      <img class="logo" src="../../assets/img/acme.png" alt="Logo" />
+      <div class="sidebar-nav">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <span class="visible-xs navbar-brand">Menu de navigation</span>
+          </div>
+          <div class="navbar-collapse collapse sidebar-navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="msgAccueil">
+                <div class="nameUser">
+                  <div class="tdPhoto"><img src="../../assets/img/photo0.png" /></div>
+                  <div class="tdName">Bonjour,<span class="firstName">{{personalInfo?.primary_info.first_name}}</span></div>
+                  <div class="deconnexion" (click)="deconnect()"> Déconnexion </div>
+                </div>
+              </li>
+              <li ><a routerLink="/personalData"><img src="../../assets/img/personalData.png" /> Données personnelles</a></li>
+              <li class="selected"><a routerLink="/adresse"><img src="../../assets/img/adresse.png" /> Adresse</a></li>
+              <li><a routerLink="/mesCommandes"><img src="../../assets/img/mesCommandes.png" /> Mes commandes</a></li>
+              <li><a routerLink="/socialMedia"><img src="../../assets/img/socialMedia.png" /> Social Media</a></li>
+              <li><a routerLink="/dataProtability"><img src="../../assets/img/portabiliteData.png" /> Gérer mes données</a></li>
+              <li><a routerLink="/credit"><img src="../../assets/img/portabiliteData.png" /> Crédit</a></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <h1 class="titlePage">Adresses</h1>
+
+      <div class="blocMenu">
+        <button class="buttonRight" (click)="updateContact(2)"><img src="../../assets/img/edit2.png" alt="Editer" /></button>
+        <h3 class="titleBloc">Mes adresses</h3>
+
+        <div class="mainBloc" *ngIf="mode==1">
+          <div class="form-group">
+            <label class="adresses">Adresse de livraison:</label>
+            <span>
+              {{personalInfo?.standardaddress.address1}}
+              {{personalInfo?.standardaddress.city}}
+              {{personalInfo?.standardaddress.state}}
+              {{personalInfo?.standardaddress.postalcode}}
+              {{personalInfo?.standardaddress.country}}
+            </span>
+
+          </div>
+
+          <div class="form-group">
+            <label class="adresses">Adresse de facturation:</label>
+            <span>
+              {{personalInfo?.receivedaddress.address1}}
+              {{personalInfo?.receivedaddress.city}}
+              {{personalInfo?.receivedaddress.state}}
+              {{personalInfo?.receivedaddress.postalcode}}
+              {{personalInfo?.receivedaddress.country}}
+            </span>
+          </div>
+
+        </div>
+        <div class="mainBloc" *ngIf="mode==2">
+          <div class="form-group">
+            <label class="adresses">Adresse de livraison:</label>
+            <span>
+              Address: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.standardaddress.address1">
+            </span>
+            <span>
+             Ville: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.standardaddress.city">
+            </span>
+            <span>
+              State: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.standardaddress.state">
+            </span>
+            <span>
+             code postal: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.standardaddress.postalcode">
+            </span>
+            <span>
+             Pays: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.standardaddress.country">
+            </span>
+
+          </div>
+
+          <div class="form-group">
+            <label class="adresses">Adresse de facturation:</label>
+            <span>
+            Address: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.receivedaddress.address1">
+            </span>
+            <span>
+             Ville: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.receivedaddress.city">
+            </span>
+            <span>
+              State: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.receivedaddress.state">
+            </span>
+            <span>
+             code postal: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.receivedaddress.postalcode">
+            </span>
+            <span>
+             Pays: <input type="text" class="form-control" name="last_name" [(ngModel)]="customersxml.receivedaddress.country">
+            </span>
+          </div>
+          <div class="flexElt"><button type="button" class="btn btn-primary btn-sm" (click)="updateMyInfo()">Envoyer</button></div>
+
+        </div>
+
+      </div>
+
+      <div id="advertizer" class="blocMenu">
+        <p>
+          Vos données personnelles restent strictement confidentielles dans le respect de vos consentements.
+          Pour plus d’information, allez dans la rubrique <a id="linkadvertizer" routerLink="/dataProtability" alt="Portabilité des données">Gérer mes données.</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-container">
+    <img src="../../assets/img/sqli.png" alt="Logo SQLI" />
+
+  </div>
+</footer>
+</body>
+</html>
